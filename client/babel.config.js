@@ -3,9 +3,7 @@ module.exports = {
     ['@babel/preset-env'],
     [
       '@babel/preset-react',
-      {
-        development: true,
-      },
+      { development: process.env.NODE_ENV !== 'production' },
     ],
   ],
 };
