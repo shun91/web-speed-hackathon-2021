@@ -22,7 +22,7 @@ const AspectRatioBox = ({ aspectHeight, aspectWidth, children }) => {
       const clientWidth = ref.current.clientWidth;
       setClientHeight((clientWidth / aspectWidth) * aspectHeight);
     }
-    setImmediate(() => calcStyle());
+    setTimeout(() => calcStyle(), 0);
 
     // ウィンドウサイズが変わるたびに計算する
     window.addEventListener('resize', calcStyle, { passive: false });
