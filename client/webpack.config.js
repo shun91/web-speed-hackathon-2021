@@ -23,7 +23,6 @@ const config = {
   devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
   entry: {
     main: [
-      'regenerator-runtime/runtime',
       path.resolve(SRC_PATH, './index.css'),
       path.resolve(SRC_PATH, './buildinfo.js'),
       path.resolve(SRC_PATH, './index.jsx'),
