@@ -1,9 +1,5 @@
+import { zip } from 'lodash-es';
 import React from 'react';
-
-/**
- * https://youmightnotneed.com/lodash/#zip
- */
-const zip = (arr, ...args) => arr.map((value, idx) => [value, ...args.map((arr) => arr[idx])]);
 
 /**
  * https://youmightnotneed.com/lodash/#mean
