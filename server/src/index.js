@@ -1,11 +1,21 @@
-import http from 'http';
+import { readFileSync } from 'fs';
+import spdy from 'spdy';
 
 import { app } from './app';
 import { insertSeeds } from './seeds';
 import { sequelize } from './sequelize';
 
+const spdyOptions = {
+  // Private key
+  key: readFileSync(__dirname + '/../keys/spdy-key.pem'),
+  // Fullchain file or cert file (prefer the former)
+  cert: readFileSync(__dirname + '/../keys/spdy-cert.pem'),
+  ca: readFileSync(__dirname + '/../keys/spdy-ca.pem'),
+  passphrase: 'pass',
+};
+
 async function main() {
-  const server = http.createServer(app);
+  const server = spdy.createServer(spdyOptions, app);
 
   // データベースの初期化をします
   await sequelize.sync({
