@@ -44,15 +44,18 @@ const CoveredImage = ({ alt, src }) => {
 
   return (
     <div ref={callbackRef} className="relative w-full h-full overflow-hidden">
-      <img
-        alt={alt}
-        className={classNames('absolute left-1/2 top-1/2 max-w-none transform -translate-x-1/2 -translate-y-1/2', {
-          'w-auto h-full': containerRatio > imageRatio,
-          'w-full h-auto': containerRatio <= imageRatio,
-        })}
-        src={blobUrl}
-        loading="lazy"
-      />
+      <picture>
+        <source srcSet={blobUrl} type="image/webp" />
+        <img
+          alt={alt}
+          className={classNames('absolute left-1/2 top-1/2 max-w-none transform -translate-x-1/2 -translate-y-1/2', {
+            'w-auto h-full': containerRatio > imageRatio,
+            'w-full h-auto': containerRatio <= imageRatio,
+          })}
+          src={blobUrl}
+          loading="lazy"
+        />
+      </picture>
     </div>
   );
 };

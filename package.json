@@ -14,6 +14,10 @@
     "node": "16.x.x"
   },
   "devDependencies": {
+    "@types/imagemin": "^8.0.0",
+    "@types/imagemin-webp": "^5.1.2",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^7.0.0",
     "prettier": "^2.5.1"
   }
 }
