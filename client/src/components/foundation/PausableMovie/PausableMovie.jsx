@@ -15,8 +15,10 @@ import { FontAwesomeIcon } from '../FontAwesomeIcon';
  */
 const PausableMovie = ({ src }) => {
   const videoRef = React.useRef(null);
+  // 視覚効果 off のとき自動再生しない（VRT対策）
+  const isAutoPlay = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const [isPlaying, setIsPlaying] = React.useState(true);
+  const [isPlaying, setIsPlaying] = React.useState(isAutoPlay);
   const handleClick = React.useCallback(() => {
     setIsPlaying((isPlaying) => {
       if (isPlaying) {
@@ -31,7 +33,7 @@ const PausableMovie = ({ src }) => {
   return (
     <AspectRatioBox aspectHeight={1} aspectWidth={1}>
       <button className="group relative block w-full h-full" onClick={handleClick} type="button">
-        <video autoPlay loop muted playsInline ref={videoRef}>
+        <video autoPlay={isAutoPlay} loop muted playsInline ref={videoRef}>
           <source src={src} type="video/webm" />
         </video>
         <div
